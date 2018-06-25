@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-setup(name='TextCleanUp',
+setup(name='textcleanup',
       version='0.1.3',
       description='Synthesis Project',
       url='https://github.com/CederGroupHub/TextCleanUp',
