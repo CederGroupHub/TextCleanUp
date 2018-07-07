@@ -8,8 +8,9 @@ class TextCleanUp:
         ps_file = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
             './parsing_symbols.json')
-
-        self.symbols_table = json.loads(open(ps_file).read())
+        
+        with open(ps_file, 'r') as f:
+            self.symbols_table = json.loads(f.read())
 
     def cleanup_text(self, text, ignore=()):
         """
