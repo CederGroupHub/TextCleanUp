@@ -1,18 +1,18 @@
-import re
 import json
 import os
-import pubchempy as pcp
+import re
+
 
 class TextCleanUp:
-
     def __init__(self):
         ps_file = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
             './parsing_symbols.json')
+        
+        with open(ps_file, 'r') as f:
+            self.symbols_table = json.loads(f.read())
 
-        self.symbols_table = json.loads(open(ps_file).read())
-
-    def cleanup_text(self, text, ignore=[]):
+    def cleanup_text(self, text, ignore=()):
         """
         Original author: Olga Kononova.
 
