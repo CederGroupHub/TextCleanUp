@@ -40,6 +40,10 @@ class TextCleanUp:
 
         new_text = text
 
+        for c in ['†']:
+            if c not in ignore:
+                new_text = new_text.replace(c, '')
+
         for c in self.symbols_table:
             if c not in ignore:
                 new_text = new_text.replace(c, self.symbols_table[c])
@@ -69,7 +73,7 @@ class TextCleanUp:
 
         new_text = new_text.replace(chr(160), '')
         new_text = new_text.replace(chr(173), '')  # soft hyphen
-        new_text = re.sub('(\d+),(\d+)', '\\1\\2', new_text) #remove coma in thousands
+        #new_text = re.sub('(\d+),(\d+)', '\\1\\2', new_text) #remove coma in thousands
         # text = re.sub('\d+(\+)\d+', ' + ', text)
         new_text = re.sub('(\w+)=(\d+)', '\\1 = \\2', new_text)
         new_text = new_text.replace('%', '% ')
@@ -103,6 +107,8 @@ class TextCleanUp:
                   '\(A.G', '\(Fuchen', '\(Furuuchi', '(AR)']:
             material_name = re.split(c, material_name)[0]
         material_name = material_name.rstrip('(-')
+
+        material_name = material_name.replace('(s)', '')
 
         # unifying hydrates representation
         dots = [8901, 8729, 65381, 120, 42, 215, 8226]
